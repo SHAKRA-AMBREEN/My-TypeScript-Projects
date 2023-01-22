@@ -1,0 +1,27 @@
+{
+  "name": "sitara-clc",
+  "version": "1.0.1",
+  "description": "",
+  "main": "bin/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/chalk-animation": "^1.6.1",
+    "@types/inquirer": "^9.0.3",
+    "@types/node": "^18.11.9"
+  },
+  "bin": {
+    "sitara-clc": "bin/index.js"
+  },
+  "dependencies": {
+    "chalk": "^5.1.2",
+    "chalk-animation": "^2.0.3",
+    "inquirer": "^9.1.4",
+    "sitara-clc": "^1.0.1"
+  }
+}

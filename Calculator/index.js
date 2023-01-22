@@ -1,17 +1,13 @@
 #!/usr/bin/env node
-
-
 import inquirer from "inquirer";
 import chalk from "chalk";
 import chalkAnimation from "chalk-animation";
-
-
-const sleep = ()=> {
-    return new Promise((res)=>{
-        setTimeout(res,2000);
-    })
-}
-async function welcome(){
+const sleep = () => {
+    return new Promise((res) => {
+        setTimeout(res, 2000);
+    });
+};
+async function welcome() {
     let rainbowTitle = chalkAnimation.rainbow('-------------Lets Start Calculation-------------');
     await sleep();
     rainbowTitle.stop();
@@ -31,8 +27,6 @@ async function welcome(){
     | |___|___|___| |___| |
     |_____________________|`));
 }
-
-
 console.log(chalk.blue(`
 ·▄▄▄▄  ▄▄▄ . ▌ ▐·▄▄▄ .▄▄▌         ▄▄▄·  ▄▄▄▄·  ▄· ▄▌  .▄▄ ·  ▄ .▄ ▄▄▄· ▄ •▄ ▄▄▄   ▄▄▄· 
 ██· ██ ▀▄.▀·▪█·█▌▀▄.▀·██•   ▄█▀▄ ▐█ ▄█  ▐█ ▀█▪▐█▪██▌  ▐█ ▀. ██▪▐█▐█ ▀█ █▌▄▌▪▀▄ █·▐█ ▀█ 
@@ -41,84 +35,59 @@ console.log(chalk.blue(`
 ▀▀▀▀▀•  ▀▀▀ . ▀   ▀▀▀ .▀▀▀  ▀█▄▀▪.▀     ·▀▀▀▀   ▀ •    ▀▀▀▀ ▀▀▀ · ▀  ▀ ·▀  ▀.▀  ▀ ▀  ▀ 
               
 `));
-
 await welcome();
-
-
-
-
-async function askQuestion(){
+async function askQuestion() {
     let answers = await inquirer
-  .prompt([
-    {
-        type:"list",
-        name:"operator",
-        message:"which operation you want to perform? \n",
-        choices:["Addition","Substraction","Multiplication","Division"]
-
-    },
-    {
-        type:"number",
-        name:"num1",
-        message: "Enter First Number: ",
-        validate: (answer:number)=> {
-            let valid = !isNaN(answer);
-            return valid || 'Enter a valid number';
+        .prompt([
+        {
+            type: "list",
+            name: "operator",
+            message: "which operation you want to perform? \n",
+            choices: ["Addition", "Substraction", "Multiplication", "Division"]
+        },
+        {
+            type: "number",
+            name: "num1",
+            message: "Enter First Number: ",
+            validate: (answer) => {
+                let valid = !isNaN(answer);
+                return valid || 'Enter a valid number';
+            }
+        },
+        {
+            type: "number",
+            name: "num2",
+            message: "Enter Second Number: ",
+            validate: (answer) => {
+                let valid = !isNaN(answer);
+                return valid || 'Enter a valid number';
+            }
         }
-
-    },
-    {
-        type:"number",
-        name:"num2",
-        message: "Enter Second Number: ",
-        validate: (answer:number)=> {
-            let valid = !isNaN(answer);
-            return valid || 'Enter a valid number'; 
-         }
-}
-  ]);
-
- 
-    if
-    (answers.operator == "Addition"){
+    ]);
+    if (answers.operator == "Addition") {
         console.log(chalk.green(`${answers.num1} + ${answers.num2} = ${answers.num1 + answers.num2}`));
-
     }
-    else if
-    (answers.operator == "Substraction"){
+    else if (answers.operator == "Substraction") {
         console.log(chalk.green(`${answers.num1} - ${answers.num2} = ${answers.num1 - answers.num2}`));
     }
-    else if
-    (answers.operator == "Multiplication"){
+    else if (answers.operator == "Multiplication") {
         console.log(chalk.green(`${answers.num1} * ${answers.num2} = ${answers.num1 * answers.num2}`));
     }
-    else if
-    (answers.operator == "Division"){
+    else if (answers.operator == "Division") {
         console.log(chalk.green(`${answers.num1} / ${answers.num2} = ${answers.num1 / answers.num2}`));
     }
-
-  
-};
-
+}
+;
 // askQuestion();
-
 async function startAgain() {
-    do{
+    do {
         await askQuestion();
-       var again = await inquirer
-        .prompt ({
+        var again = await inquirer
+            .prompt({
             type: "input",
             name: "restart",
             message: chalk.red("Do you want to continue? Press y or n: ")
-        })
-    }while(again.restart == 'y' ||  again.restart == 'Y' ||again.restart == 'yes' || again.restart == 'YES')
-
+        });
+    } while (again.restart == 'y' || again.restart == 'Y' || again.restart == 'yes' || again.restart == 'YES');
 }
-    
 startAgain();
-
-
-
-
-
-
